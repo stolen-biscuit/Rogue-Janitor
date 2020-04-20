@@ -1,0 +1,116 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/background.jpeg" type="Texture" id=1]
+[ext_resource path="res://HUD/fonts/unscii-16.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://menu/menu.tres" type="Theme" id=3]
+[ext_resource path="res://menu/main_menu.gd" type="Script" id=4]
+[ext_resource path="res://menu/instructions.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 2 )
+
+[node name="main_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bkgd" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -234.0
+margin_right = 234.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 1 )
+text = "Rogue Janitor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="normal" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 136.0
+margin_top = 84.0
+margin_right = 440.0
+margin_bottom = 115.0
+theme = ExtResource( 3 )
+text = "Normal Mode (120 seconds)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tutorial" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 352.0
+margin_top = -116.0
+margin_right = 656.0
+margin_bottom = -85.0
+theme = ExtResource( 3 )
+text = "How to Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hard" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -448.0
+margin_top = 84.0
+margin_right = -120.0
+margin_bottom = 115.0
+theme = ExtResource( 3 )
+text = "Hard Mode (90 seconds)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="challenge" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.64
+anchor_right = 0.5
+anchor_bottom = 0.64
+margin_left = -160.0
+margin_top = 88.0
+margin_right = 168.0
+margin_bottom = 119.0
+theme = ExtResource( 3 )
+text = "Challenge Mode (60 seconds)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+margin_left = 161.65
+margin_top = 113.85
+margin_right = 851.65
+margin_bottom = 411.85
+texture = ExtResource( 5 )
+
+[node name="close_help" type="Button" parent="TextureRect"]
+margin_left = 312.551
+margin_top = 389.15
+margin_right = 376.551
+margin_bottom = 420.15
+theme = ExtResource( 3 )
+text = "Close"
+[connection signal="pressed" from="normal" to="." method="_on_normal_pressed"]
+[connection signal="pressed" from="tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="challenge" to="." method="_on_challenge_pressed"]
+[connection signal="pressed" from="TextureRect/close_help" to="." method="_on_close_help_pressed"]

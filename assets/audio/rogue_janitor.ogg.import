@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rogue_janitor.ogg-6ab617ac2a0a2ff9fb516e08769757c6.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/rogue_janitor.ogg"
+dest_files=[ "res://.import/rogue_janitor.ogg-6ab617ac2a0a2ff9fb516e08769757c6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

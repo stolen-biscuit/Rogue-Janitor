@@ -1,0 +1,29 @@
+Rogue Janitor
+
+As always it is the unsung heroes that keep the ship runnig smoothly. The dungeon is no different.
+
+You're a one-armed goblin from Grolig, and one of the Dungeon of Ooolag's custodial staff. Ooolag the Demon King took all the monsters out to party after the last wave of heroes were defeated and you completely forgot to clean the dungeon before next shift arrives! The heroes are on their way and if they find the dungeon already defeated, they will never return and the dungeon will be abandoned. 
+
+
+Clean it up bOoolag is on his way but he has stopped off for his morning coffee, giving you a chance to rush through each level and clean up before Ooolag arrives and fires you.
+
+Game Loop:
+You have to run in and clean every room in a dungeon. You have to throw away bodies and junk, refill chests and return each levels collectible to it's mantle.
+
+Each level you get a run sheet, explaining the layout of the level, the collectible and how many monster bodies were left behind. You will have about 3-5 minutes for each level, each level will get progressively larger.
+
+Game Features
+    - Blood stains
+    - Bodies/Junk
+    - Empty Chests
+    - Collectible
+    - Timer
+    - Generated Levels
+    - YOU GOT FIRED dark souls esque message when you fail
+    - Grue
+
+Each level requires atleast 75% of the bodies + chests refilled, and the collectible returned to it's proper place (collectible is always on bottom layer)
+
+Stretch Goals
+    - Party Levels, the party got down to these levels and theres a bit more junk laying around
+    - Sleeping monsters, don't wake the hungover monsters!

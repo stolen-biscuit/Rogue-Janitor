@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Janitor/Janitor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Janitor/gem_sack.tscn" type="PackedScene" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 30, 0.2, 30 )
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( -15, 0.1, 15, 15, 0.1, 15, -15, -0.1, 15, 15, 0.1, 15, 15, -0.1, 15, -15, -0.1, 15, 15, 0.1, -15, -15, 0.1, -15, 15, -0.1, -15, -15, 0.1, -15, -15, -0.1, -15, 15, -0.1, -15, 15, 0.1, 15, 15, 0.1, -15, 15, -0.1, 15, 15, 0.1, -15, 15, -0.1, -15, 15, -0.1, 15, -15, 0.1, -15, -15, 0.1, 15, -15, -0.1, -15, -15, 0.1, 15, -15, -0.1, 15, -15, -0.1, -15, 15, 0.1, 15, -15, 0.1, 15, 15, 0.1, -15, -15, 0.1, 15, -15, 0.1, -15, 15, 0.1, -15, -15, -0.1, 15, 15, -0.1, 15, -15, -0.1, -15, 15, -0.1, 15, 15, -0.1, -15, -15, -0.1, -15 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="Janitor" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6889, 0, 0 )
+
+[node name="gem_sack" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.350356, 0 )

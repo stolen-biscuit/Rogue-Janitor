@@ -1,0 +1,327 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://HUD/fonts/unscii.tres" type="DynamicFont" id=1]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
+[ext_resource path="res://assets/background.jpeg" type="Texture" id=3]
+[ext_resource path="res://assets/you_got_fired.png" type="Texture" id=4]
+[ext_resource path="res://menu/menu.tres" type="Theme" id=5]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "fail_anim"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("restart:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("main_menu:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 360.0
+margin_bottom = 180.0
+theme = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rows" type="VBoxContainer" parent="Panel"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 265.0
+margin_bottom = 141.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fps_row" type="HBoxContainer" parent="Panel/rows"]
+margin_right = 264.0
+margin_bottom = 25.0
+
+[node name="Label" type="Label" parent="Panel/rows/fps_row"]
+margin_right = 48.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "FPS:"
+
+[node name="fps" type="Label" parent="Panel/rows/fps_row"]
+margin_left = 52.0
+margin_right = 52.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="junk_row" type="HBoxContainer" parent="Panel/rows"]
+margin_top = 29.0
+margin_right = 264.0
+margin_bottom = 54.0
+
+[node name="Label" type="Label" parent="Panel/rows/junk_row"]
+margin_right = 192.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "Junk Destroyed: "
+
+[node name="junk_count" type="Label" parent="Panel/rows/junk_row"]
+margin_left = 196.0
+margin_right = 196.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Label3" type="Label" parent="Panel/rows/junk_row"]
+margin_left = 200.0
+margin_right = 212.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "/"
+
+[node name="junk_total" type="Label" parent="Panel/rows/junk_row"]
+margin_left = 216.0
+margin_right = 216.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="chest_row" type="HBoxContainer" parent="Panel/rows"]
+margin_top = 58.0
+margin_right = 264.0
+margin_bottom = 83.0
+
+[node name="Label" type="Label" parent="Panel/rows/chest_row"]
+margin_right = 168.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "Chests Filled:"
+
+[node name="chest_count" type="Label" parent="Panel/rows/chest_row"]
+margin_left = 172.0
+margin_right = 172.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Label3" type="Label" parent="Panel/rows/chest_row"]
+margin_left = 176.0
+margin_right = 188.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "/"
+
+[node name="chest_total" type="Label" parent="Panel/rows/chest_row"]
+margin_left = 192.0
+margin_right = 192.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="body_row" type="HBoxContainer" parent="Panel/rows"]
+margin_top = 87.0
+margin_right = 264.0
+margin_bottom = 112.0
+
+[node name="Label" type="Label" parent="Panel/rows/body_row"]
+margin_right = 180.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "Bodies Removed:"
+
+[node name="body_count" type="Label" parent="Panel/rows/body_row"]
+margin_left = 184.0
+margin_right = 184.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Label3" type="Label" parent="Panel/rows/body_row"]
+margin_left = 188.0
+margin_right = 200.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "/"
+
+[node name="body_total" type="Label" parent="Panel/rows/body_row"]
+margin_left = 204.0
+margin_right = 204.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="blood_row" type="HBoxContainer" parent="Panel/rows"]
+margin_top = 116.0
+margin_right = 264.0
+margin_bottom = 141.0
+
+[node name="Label" type="Label" parent="Panel/rows/blood_row"]
+margin_right = 240.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "Blood Pools Cleaned:"
+
+[node name="blood_count" type="Label" parent="Panel/rows/blood_row"]
+margin_left = 244.0
+margin_right = 244.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Label3" type="Label" parent="Panel/rows/blood_row"]
+margin_left = 248.0
+margin_right = 260.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+text = "/"
+
+[node name="blood_total" type="Label" parent="Panel/rows/blood_row"]
+margin_left = 264.0
+margin_right = 264.0
+margin_bottom = 25.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Panel2" type="Panel" parent="."]
+margin_left = 750.0
+margin_right = 1024.0
+margin_bottom = 83.0
+theme = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rows" type="VBoxContainer" parent="Panel2"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 258.0
+margin_bottom = 73.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="timer" type="HBoxContainer" parent="Panel2/rows"]
+margin_right = 243.0
+margin_bottom = 25.0
+
+[node name="Label" type="Label" parent="Panel2/rows/timer"]
+margin_right = 192.0
+margin_bottom = 25.0
+text = "TIME REMAINING: "
+
+[node name="remaining_time" type="Label" parent="Panel2/rows/timer"]
+margin_left = 196.0
+margin_right = 196.0
+margin_bottom = 25.0
+
+[node name="score" type="HBoxContainer" parent="Panel2/rows"]
+margin_top = 29.0
+margin_right = 243.0
+margin_bottom = 54.0
+
+[node name="Label" type="Label" parent="Panel2/rows/score"]
+margin_right = 72.0
+margin_bottom = 25.0
+text = "Score:"
+align = 2
+
+[node name="score" type="Label" parent="Panel2/rows/score"]
+margin_left = 76.0
+margin_right = 100.0
+margin_bottom = 25.0
+custom_colors/font_color = Color( 0.0156863, 1, 0.0784314, 1 )
+text = "80"
+
+[node name="timer" type="Timer" parent="."]
+
+[node name="fail_bkgd" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fail_text" type="TextureRect" parent="fail_bkgd"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -295.0
+margin_top = -41.0
+margin_right = 295.0
+margin_bottom = 41.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fail_bkgd"]
+anims/fail_anim = SubResource( 3 )
+
+[node name="restart" type="Button" parent="fail_bkgd"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -48.0
+margin_top = -160.0
+margin_right = 40.0
+margin_bottom = -129.0
+theme = ExtResource( 5 )
+text = "Restart"
+
+[node name="main_menu" type="Button" parent="fail_bkgd"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = 84.0
+margin_right = 56.0
+margin_bottom = 115.0
+theme = ExtResource( 5 )
+text = "Main Menu"
+[connection signal="pressed" from="fail_bkgd/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="fail_bkgd/main_menu" to="." method="_on_main_menu_pressed"]

@@ -1,0 +1,159 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/background.jpeg" type="Texture" id=1]
+[ext_resource path="res://HUD/fonts/unscii-16.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://menu/menu.tres" type="Theme" id=3]
+[ext_resource path="res://menu/inbetween_levels.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="inbetween_levels" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -288.0
+margin_top = 8.0
+margin_right = 288.0
+margin_bottom = 157.0
+custom_fonts/font = SubResource( 2 )
+text = "Congratulations!
+"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="success" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -288.0
+margin_top = 104.0
+margin_right = 288.0
+margin_bottom = 205.0
+custom_fonts/font = SubResource( 1 )
+text = "You successfully cleaned
+level"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = 205.0
+margin_right = 64.0
+margin_bottom = 306.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score_label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -399.0
+margin_top = 240.0
+margin_right = -271.0
+margin_bottom = 292.0
+custom_fonts/font = SubResource( 1 )
+text = "Score"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -399.0
+margin_top = 292.0
+margin_right = -271.0
+margin_bottom = 341.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hi_score_label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 168.957
+margin_top = 240.0
+margin_right = 296.957
+margin_bottom = 292.0
+custom_fonts/font = SubResource( 1 )
+text = "Hi-Score"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hi_score" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 200.001
+margin_top = 292.0
+margin_right = 328.001
+margin_bottom = 341.0
+custom_fonts/font = SubResource( 1 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -92.0
+margin_top = 70.0
+margin_right = 92.0
+margin_bottom = 15.5
+theme = ExtResource( 3 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main_menu" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -632.0
+margin_top = 148.0
+margin_right = -392.0
+margin_bottom = 179.0
+theme = ExtResource( 3 )
+text = "Quit to Main Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]

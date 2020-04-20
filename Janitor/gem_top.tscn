@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Janitor/display_gem.tscn" type="PackedScene" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_unshaded = true
+albedo_color = Color( 0.580392, 0, 0, 1 )
+
+[sub_resource type="CylinderMesh" id=2]
+material = SubResource( 1 )
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.2
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.146752
+height = 0.14487
+
+[node name="gem_spawner" type="StaticBody"]
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.163519, 0 )
+shape = SubResource( 3 )
+
+[node name="gems" type="Spatial" parent="."]
+
+[node name="display_gem" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.0400152, 0 )
+
+[node name="display_gem2" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0950413, 0.0310992, 0, -0.0310992, 0.0950413, 0, 0, 0, 0.1, 0, 0.0400152, 0.0444332 )
+
+[node name="display_gem3" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0999057, -0.00131836, -0.00413721, 0.00180691, 0.0992606, 0.0120031, 0.00394837, -0.0120665, 0.0991908, -0.0428505, 0.0400152, 0.0444332 )
+
+[node name="display_gem4" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0999057, -0.00131836, -0.00413721, 0.00180691, 0.0992606, 0.0120031, 0.00394837, -0.0120665, 0.0991908, -0.0428505, 0.0400152, -0.0338055 )
+
+[node name="display_gem5" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0913676, 0.0406233, 0.00130484, -0.040452, 0.0905767, 0.0126288, 0.00394837, -0.0120665, 0.0991908, 0.06591, 0.0400152, -0.0338055 )
+
+[node name="display_gem6" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0998181, -0.00405128, -0.00446618, 0.00455741, 0.0991866, 0.0118846, 0.00394837, -0.0120665, 0.0991908, 0.06591, 0.0400152, 0.0293034 )
+
+[node name="display_gem7" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0952013, -0.0296971, -0.0074022, 0.0303499, 0.0947232, 0.0103149, 0.00394837, -0.0120665, 0.0991908, -0.000548661, 0.0400152, 0.0902843 )
+
+[node name="display_gem8" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0416948, -0.00346864, -0.0908268, 0.0303499, 0.0947232, 0.0103149, 0.0856763, -0.0318667, 0.0405473, -0.0492821, 0.0400152, 0.0902843 )
+
+[node name="display_gem9" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0418524, 0.00556249, -0.0906501, -0.000145684, 0.0998162, 0.00605769, 0.0908205, -0.00240322, 0.0417836, -0.0867119, 0.0400152, -0.0242808 )
+
+[node name="display_gem10" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0961507, 0.00658096, -0.0266785, -0.0089925, 0.0992795, -0.00791952, 0.0259651, 0.0100137, 0.0960497, -0.069942, 0.0430192, -0.0803612 )
+
+[node name="display_gem11" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0961507, 0.00658096, -0.0266785, -0.0089925, 0.0992795, -0.00791952, 0.0259651, 0.0100137, 0.0960497, 0.0204063, 0.0400152, -0.0822252 )
+
+[node name="display_gem12" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0961507, 0.00658096, -0.0266785, -0.0089925, 0.0992795, -0.00791952, 0.0259651, 0.0100137, 0.0960497, 0.111595, 0.0400152, 0.00804606 )
+
+[node name="display_gem13" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0961507, 0.00658096, -0.0266785, -0.00267068, 0.0988682, 0.0147632, 0.0273481, -0.0134824, 0.0952382, 0.0485691, 0.0400152, 0.0823605 )
+
+[node name="display_gem14" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0961507, 0.00658096, -0.0266785, -0.00267068, 0.0988682, 0.0147632, 0.0273481, -0.0134824, 0.0952382, -0.00747287, 0.0400152, -0.0893216 )
+
+[node name="display_gem15" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0961507, 0.00658096, -0.0266785, -0.00267068, 0.0988682, 0.0147632, 0.0273481, -0.0134824, 0.0952382, 0.0707131, 0.04973, -0.0566335 )
+
+[node name="display_gem16" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0961507, 0.00658096, -0.0266785, -0.00267068, 0.0988682, 0.0147632, 0.0273481, -0.0134824, 0.0952382, -0.091522, 0.0400152, 0.0514239 )
+
+[node name="display_gem17" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( 0.0582714, -0.0764534, -0.027556, 0.076528, 0.0630326, -0.0130521, 0.0273481, -0.0134824, 0.0952382, -0.0267175, 0.0952831, 0.0514239 )
+
+[node name="display_gem18" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( -0.000359217, -0.0198583, -0.0980078, 0.076528, 0.0630326, -0.0130521, 0.0643688, -0.0750503, 0.0149707, 0.0176703, 0.0952831, -0.0459082 )
+
+[node name="display_gem19" parent="gems" instance=ExtResource( 1 )]
+transform = Transform( -0.000359217, -0.0198583, -0.0980078, -0.0401604, 0.0897859, -0.0180452, 0.0915807, 0.0392955, -0.00829769, 0.0901169, 0.0952831, 0.0324063 )

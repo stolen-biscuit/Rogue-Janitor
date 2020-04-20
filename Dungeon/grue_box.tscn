@@ -1,0 +1,335 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://assets/grue_box/lid.png" type="Texture" id=1]
+[ext_resource path="res://assets/grue_box/box.png" type="Texture" id=2]
+[ext_resource path="res://assets/grue_box/Material.material" type="Material" id=3]
+[ext_resource path="res://assets/grue_box/face/shifty_left.png" type="Texture" id=4]
+[ext_resource path="res://Dungeon/grue_box.gd" type="Script" id=5]
+[ext_resource path="res://assets/grue_box/face/shifty_right.png" type="Texture" id=6]
+[ext_resource path="res://assets/grue_box/face/mouth_closed.png" type="Texture" id=7]
+[ext_resource path="res://assets/grue_box/face/full.png" type="Texture" id=8]
+[ext_resource path="res://assets/grue_box/face/mouth_open.png" type="Texture" id=9]
+[ext_resource path="res://assets/audio/eating.wav" type="AudioStream" id=10]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Finished Eating"
+tracks/0/type = "value"
+tracks/0/path = NodePath("box/grue:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Food Seen"
+tracks/0/type = "value"
+tracks/0/path = NodePath("box/grue:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Shifty Eyes"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("box/grue:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "eating"
+length = 0.15
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("box/grue:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 7 ) ]
+}
+
+[sub_resource type="ArrayMesh" id=5]
+surfaces/0 = {
+"aabb": AABB( -1, -1, -1, 2, 2.00001, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 58, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 57, 0, 58, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 54, 0, 56, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 54, 0, 58, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 56, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 52, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 56, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 57, 0, 52, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 54, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 54, 0, 52, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 56, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 48, 0, 52, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 48, 0, 56, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 59, 0, 56, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 52, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 56, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 58, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 57, 0, 56, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 52, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 57, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 52, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 59, 0, 52 ),
+"array_index_data": PoolByteArray( 0, 0, 2, 0, 1, 0, 3, 0, 5, 0, 4, 0, 6, 0, 8, 0, 7, 0, 9, 0, 11, 0, 10, 0, 12, 0, 14, 0, 13, 0, 15, 0, 17, 0, 16, 0, 0, 0, 1, 0, 18, 0, 3, 0, 4, 0, 19, 0, 6, 0, 7, 0, 20, 0, 9, 0, 10, 0, 21, 0, 12, 0, 13, 0, 22, 0, 15, 0, 16, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 36,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_unshaded = true
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="ConvexPolygonShape" id=7]
+points = PoolVector3Array( -1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, 1 )
+
+[sub_resource type="ArrayMesh" id=8]
+surfaces/0 = {
+"aabb": AABB( -1, -1, -1, 2, 2.00001, 2.00001 ),
+"array_data": PoolByteArray( 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 60, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 58, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 57, 0, 58, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 54, 0, 56, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 54, 0, 58, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 56, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 52, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 56, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 57, 0, 52, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 54, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 54, 0, 52, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 56, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 48, 0, 52, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 48, 0, 56, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 59, 0, 56, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 52, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 56, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 58, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 57, 0, 56, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 52, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 57, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 52, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 59, 0, 52 ),
+"array_index_data": PoolByteArray( 0, 0, 2, 0, 1, 0, 3, 0, 5, 0, 4, 0, 6, 0, 8, 0, 7, 0, 9, 0, 11, 0, 10, 0, 12, 0, 14, 0, 13, 0, 15, 0, 17, 0, 16, 0, 0, 0, 1, 0, 18, 0, 3, 0, 4, 0, 19, 0, 6, 0, 7, 0, 20, 0, 9, 0, 10, 0, 21, 0, 12, 0, 13, 0, 22, 0, 15, 0, 16, 0, 23, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 36,
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 24
+}
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( -1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, 1, 1 )
+
+[sub_resource type="PhysicsMaterial" id=27]
+friction = 100.0
+rough = true
+absorbent = true
+
+[sub_resource type="ArrayMesh" id=28]
+surfaces/0 = {
+"aabb": AABB( -1, -1, -1, 2, 2, 2 ),
+"array_data": PoolByteArray( 72, 193, 91, 191, 13, 52, 127, 191, 72, 193, 91, 63, 0, 0, 129, 0, 0, 127, 0, 129, 0, 54, 0, 56, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 63, 0, 0, 129, 0, 0, 127, 0, 129, 168, 56, 0, 58, 72, 193, 91, 63, 13, 52, 127, 191, 72, 193, 91, 63, 0, 0, 129, 0, 0, 127, 0, 129, 0, 54, 0, 58, 72, 193, 91, 191, 13, 52, 127, 191, 72, 193, 91, 191, 127, 0, 0, 0, 0, 127, 0, 129, 0, 54, 0, 52, 72, 193, 91, 191, 0, 0, 128, 63, 72, 193, 91, 63, 127, 0, 0, 0, 0, 127, 0, 129, 168, 56, 0, 56, 72, 193, 91, 191, 13, 52, 127, 191, 72, 193, 91, 63, 127, 0, 0, 0, 0, 127, 0, 129, 0, 54, 0, 56, 72, 193, 91, 191, 13, 52, 127, 191, 72, 193, 91, 63, 0, 127, 0, 0, 127, 0, 0, 129, 0, 54, 0, 0, 72, 193, 91, 63, 13, 52, 127, 191, 72, 193, 91, 191, 0, 127, 0, 0, 127, 0, 0, 129, 0, 57, 0, 52, 72, 193, 91, 191, 13, 52, 127, 191, 72, 193, 91, 191, 0, 127, 0, 0, 127, 0, 0, 129, 0, 54, 0, 52, 72, 193, 91, 63, 13, 52, 127, 191, 72, 193, 91, 63, 129, 0, 0, 0, 0, 127, 0, 129, 0, 48, 0, 52, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 191, 129, 0, 0, 0, 0, 127, 0, 129, 80, 53, 0, 56, 72, 193, 91, 63, 13, 52, 127, 191, 72, 193, 91, 191, 129, 0, 0, 0, 0, 127, 0, 129, 0, 48, 0, 56, 72, 193, 91, 63, 13, 52, 127, 191, 72, 193, 91, 191, 0, 0, 127, 0, 0, 127, 0, 129, 0, 57, 0, 52, 72, 193, 91, 191, 0, 0, 128, 63, 72, 193, 91, 191, 0, 0, 127, 0, 0, 127, 0, 129, 168, 58, 0, 56, 72, 193, 91, 191, 13, 52, 127, 191, 72, 193, 91, 191, 0, 0, 127, 0, 0, 127, 0, 129, 0, 57, 0, 56, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 60, 72, 193, 91, 191, 0, 0, 128, 63, 72, 193, 91, 63, 0, 127, 0, 0, 129, 0, 0, 127, 219, 56, 36, 58, 72, 193, 91, 191, 0, 0, 128, 63, 72, 193, 91, 191, 0, 127, 0, 0, 129, 0, 0, 127, 219, 56, 219, 59, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 57, 0, 58, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 54, 0, 56, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 54, 0, 58, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 56, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 52, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 129, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 56, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 57, 0, 52, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 129, 0, 0, 127, 0, 0, 127, 0, 54, 0, 52, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 56, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 48, 0, 52, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 127, 0, 0, 0, 0, 127, 0, 127, 0, 48, 0, 56, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 59, 0, 56, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 57, 0, 52, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 57, 0, 56, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 63, 0, 127, 0, 0, 129, 0, 0, 127, 72, 54, 36, 58, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 58, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 54, 0, 58, 72, 193, 91, 191, 0, 0, 128, 63, 72, 193, 91, 63, 0, 0, 129, 0, 0, 127, 0, 129, 168, 56, 0, 56, 72, 193, 91, 191, 0, 0, 128, 63, 72, 193, 91, 191, 127, 0, 0, 0, 0, 127, 0, 129, 168, 56, 0, 52, 72, 193, 91, 63, 13, 52, 127, 191, 72, 193, 91, 63, 0, 127, 0, 0, 127, 0, 0, 129, 0, 57, 0, 0, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 63, 129, 0, 0, 0, 0, 127, 0, 129, 80, 53, 0, 52, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 191, 0, 0, 127, 0, 0, 127, 0, 129, 168, 58, 0, 52, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 191, 0, 127, 0, 0, 129, 0, 0, 127, 72, 54, 219, 59, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 54, 0, 60, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 60, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 191, 0, 127, 0, 0, 129, 0, 0, 127, 72, 54, 219, 59, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 127, 0, 0, 127, 0, 127, 0, 57, 0, 56, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 129, 0, 0, 0, 0, 127, 0, 127, 0, 57, 0, 52, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 129, 0, 0, 127, 0, 0, 127, 0, 57, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 127, 0, 0, 0, 0, 127, 0, 127, 0, 54, 0, 52, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 129, 0, 0, 127, 0, 127, 0, 59, 0, 52, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 127, 0, 0, 130, 0, 0, 127, 0, 54, 0, 60, 72, 193, 91, 63, 0, 0, 128, 63, 72, 193, 91, 63, 0, 127, 0, 0, 129, 0, 0, 127, 72, 54, 36, 58, 72, 193, 91, 191, 0, 0, 128, 63, 72, 193, 91, 63, 0, 127, 0, 0, 129, 0, 0, 127, 219, 56, 36, 58, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 127, 0, 0, 129, 0, 0, 127, 0, 57, 0, 58 ),
+"array_index_data": PoolByteArray( 0, 0, 2, 0, 1, 0, 3, 0, 5, 0, 4, 0, 6, 0, 8, 0, 7, 0, 9, 0, 11, 0, 10, 0, 12, 0, 14, 0, 13, 0, 15, 0, 17, 0, 16, 0, 18, 0, 20, 0, 19, 0, 21, 0, 23, 0, 22, 0, 24, 0, 26, 0, 25, 0, 27, 0, 29, 0, 28, 0, 30, 0, 32, 0, 31, 0, 33, 0, 35, 0, 34, 0, 0, 0, 1, 0, 36, 0, 3, 0, 4, 0, 37, 0, 6, 0, 7, 0, 38, 0, 9, 0, 10, 0, 39, 0, 12, 0, 13, 0, 40, 0, 41, 0, 43, 0, 42, 0, 15, 0, 16, 0, 34, 0, 17, 0, 15, 0, 44, 0, 18, 0, 19, 0, 45, 0, 21, 0, 22, 0, 46, 0, 24, 0, 25, 0, 47, 0, 27, 0, 28, 0, 48, 0, 30, 0, 31, 0, 49, 0, 50, 0, 33, 0, 44, 0, 51, 0, 53, 0, 52, 0, 35, 0, 33, 0, 50, 0 ),
+"blend_shape_data": [  ],
+"format": 97559,
+"index_count": 84,
+"material": ExtResource( 3 ),
+"name": "Material",
+"primitive": 4,
+"skeleton_aabb": [  ],
+"vertex_count": 54
+}
+
+[sub_resource type="SpatialMaterial" id=29]
+flags_unshaded = true
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="ConvexPolygonShape" id=30]
+points = PoolVector3Array( 0.824154, -0.9969, 0.0266439, 0.824154, -0.9969, 0.830499, 0.8584, 0.996099, 0.0395466, 0.8584, 0.996099, 0.817596, 1.01585, -1.01587, 0.0318237, 1.01585, -1.01587, 0.825319, 1.01585, 1.01587, 0.0318237, 1.01585, 1.01587, 0.825319 )
+
+[sub_resource type="ConvexPolygonShape" id=31]
+points = PoolVector3Array( -0.0343233, -0.98281, 0.8584, 8.07941e-05, -1.01587, 0.0318237, 8.07941e-05, -1.01587, 0.825319, 8.07941e-05, -0.984133, 0.0318237, 0.825316, -1.01587, 0.0318237, 0.825316, -1.01587, 0.825319, 0.8584, -0.982861, 1.22366e-05, 0.8584, -0.982861, 0.857131 )
+
+[sub_resource type="ConvexPolygonShape" id=32]
+points = PoolVector3Array( 8.07941e-05, -0.952381, -1.01587, 8.07941e-05, 1.01587, -1.01587, 0.00645665, -0.937174, -0.8584, 0.00673594, 1, -0.858454, 0.818661, 1, -0.858454, 0.81894, -0.937174, -0.8584, 0.825316, -0.952381, -1.01587, 0.825316, 1.01587, -1.01587 )
+
+[sub_resource type="ConvexPolygonShape" id=33]
+points = PoolVector3Array( -0.00147046, -0.952262, -0.8584, 8.07941e-05, -1.01587, -1.01587, 8.07941e-05, -1.01587, 0.031746, 8.07941e-05, -0.984124, 0.031746, 0.0125844, -0.953343, -1, 0.812812, -0.953343, -1, 0.825316, -1.01587, -1.01587, 0.825316, -1.01587, 0.031746, 0.826867, -0.952262, -0.8584, 0.8584, -0.984124, 0.0737454 )
+
+[sub_resource type="ConvexPolygonShape" id=34]
+points = PoolVector3Array( -1.01587, -0.952381, -0.031746, -1.01587, -0.952381, 0.825397, -1.01587, 1.01587, -0.031746, -1.01587, 1.01587, 0.825397, -0.858454, 1, -0.0248336, -0.858454, 1, 0.818484, -0.8584, -0.937174, -0.0251237, -0.8584, -0.937174, 0.818775 )
+
+[sub_resource type="ConvexPolygonShape" id=35]
+points = PoolVector3Array( -1.01587, -1.01587, -0.031746, -1.01587, -1.01587, 0.825397, -1, -0.953373, -0.0183531, -1, -0.953373, 0.812004, -0.8584, -0.95226, -0.0333807, -0.8584, -0.95226, 0.827032, 0, -1.01587, -0.031746, 0, -1.01587, 0.825397, 0, -0.984124, -0.031746, 0.0391148, -0.984124, 0.8584 )
+
+[sub_resource type="ConvexPolygonShape" id=36]
+points = PoolVector3Array( -0.825316, -0.952381, -1.01587, -0.825316, 1.01587, -1.01587, -0.81894, -0.937174, -0.8584, -0.818661, 1, -0.858454, -0.00673594, 1, -0.858454, -0.00645665, -0.937174, -0.8584, -8.07941e-05, -0.952381, -1.01587, -8.07941e-05, 1.01587, -1.01587 )
+
+[sub_resource type="ConvexPolygonShape" id=37]
+points = PoolVector3Array( -1.01585, -0.952381, -1.01587, -1.01585, -0.952381, -0.031746, -1.01585, 1.01587, -1.01587, -1.01585, 1.01587, -0.031746, -0.8584, -0.933224, -0.0413243, -0.8584, 0.996716, -0.0413243, -0.828469, -0.920635, -1, -0.828469, 0.984127, -1, -0.825397, 1.01587, -0.857022, -0.825003, -0.956452, -0.8584 )
+
+[sub_resource type="ConvexPolygonShape" id=38]
+points = PoolVector3Array( 0, -1.01587, 1.01585, 0, 1.01587, 1.01585, 0.00793654, -1, 0.826885, 0.00988729, 0.996099, 0.8584, 0.857068, 1.01587, 0.825397, 1, -0.984127, 0.828373, 1, 0.984127, 0.828373, 1.01587, -1.01587, 1.01585, 1.01587, 1.01587, 1.01585 )
+
+[sub_resource type="ConvexPolygonShape" id=39]
+points = PoolVector3Array( 0.824154, -0.9969, 0.0385848, 0.825397, 1.01587, -0.857028, 0.828283, -0.985089, -1, 0.828283, 0.985089, -1, 0.8584, 0.996099, 0.0215498, 1.01585, -1.01587, -1.01587, 1.01585, -1.01587, 0.031746, 1.01585, 1.01587, -1.01587, 1.01585, 1.01587, 0.031746 )
+
+[sub_resource type="ConvexPolygonShape" id=40]
+points = PoolVector3Array( -1.01587, -1.01587, 1.01585, -1.01587, 1.01587, 1.01585, -1, -0.984127, 0.828373, -1, 0.984127, 0.828373, -0.857068, 1.01587, 0.825397, -0.00988729, 0.996099, 0.8584, -0.00793654, -1, 0.826885, 0, -1.01587, 1.01585, 0, 1.01587, 1.01585 )
+
+[sub_resource type="ConvexPolygonShape" id=41]
+points = PoolVector3Array( -1.01587, -1.01587, -1.01587, -1.01587, -1.01587, -0.031746, -1, -0.953373, -0.0471231, -0.999488, -0.953405, -1, -0.8584, -0.95226, -0.0298692, -0.0163851, -0.953405, -1, 0, -1.01587, -1.01587, 0, -1.01587, -0.031746, 0, -0.984124, -0.031746, 0.00210103, -0.95225, -0.8584 )
+
+[sub_resource type="BoxShape" id=42]
+extents = Vector3( 5.26264, 1.72725, 4.6939 )
+
+[sub_resource type="BoxShape" id=26]
+extents = Vector3( 0.698409, 0.541826, 0.765127 )
+
+[node name="grue_box" type="Spatial" groups=[
+"grue_box",
+]]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+script = ExtResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Shifty Eyes"
+"anims/Finished Eating" = SubResource( 1 )
+"anims/Food Seen" = SubResource( 2 )
+"anims/Shifty Eyes" = SubResource( 3 )
+anims/eating = SubResource( 4 )
+
+[node name="lid1" type="RigidBody" parent="."]
+
+[node name="lid1" type="MeshInstance" parent="lid1"]
+transform = Transform( -1, -1.74846e-09, -4.54262e-08, 0, 0.034641, -0.3, 8.74228e-08, -0.02, -0.519615, 0, 0.68, -1.5 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="lid1"]
+transform = Transform( -1, -1.74846e-09, -4.54262e-08, 0, 0.034641, -0.3, 8.74228e-08, -0.02, -0.519615, 0, 0.68, -1.5 )
+shape = SubResource( 7 )
+
+[node name="lid2" type="RigidBody" parent="."]
+
+[node name="lid2" type="MeshInstance" parent="lid2"]
+transform = Transform( 1, 0, 0, 0, 0.034641, -0.3, 0, 0.02, 0.519615, 0, 0.68, 1.5 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="lid2"]
+transform = Transform( 1, 0, 0, 0, 0.034641, -0.3, 0, 0.02, 0.519615, 0, 0.68, 1.5 )
+shape = SubResource( 9 )
+
+[node name="box" type="RigidBody" parent="."]
+mass = 65535.0
+physics_material_override = SubResource( 27 )
+
+[node name="box" type="MeshInstance" parent="box"]
+mesh = SubResource( 28 )
+material/0 = SubResource( 29 )
+
+[node name="CollisionShape12" type="CollisionShape" parent="box"]
+shape = SubResource( 30 )
+
+[node name="CollisionShape11" type="CollisionShape" parent="box"]
+shape = SubResource( 31 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="box"]
+shape = SubResource( 32 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="box"]
+shape = SubResource( 33 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="box"]
+shape = SubResource( 34 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="box"]
+shape = SubResource( 35 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="box"]
+shape = SubResource( 36 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="box"]
+shape = SubResource( 37 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="box"]
+shape = SubResource( 38 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="box"]
+shape = SubResource( 39 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="box"]
+shape = SubResource( 40 )
+
+[node name="CollisionShape" type="CollisionShape" parent="box"]
+shape = SubResource( 41 )
+
+[node name="grue" type="Sprite3D" parent="box"]
+transform = Transform( 0.715863, 0, 0, 0, -1.62921e-07, -1, 0, 0.702001, -1.1437e-07, 0, 0.976658, 0 )
+texture = ExtResource( 8 )
+
+[node name="detection_area" type="Area" parent="box"]
+monitorable = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="box/detection_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9691, 0 )
+shape = SubResource( 42 )
+
+[node name="eating_area" type="Area" parent="box"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.393236, 0 )
+input_ray_pickable = false
+monitorable = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="box/eating_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3413, 0 )
+shape = SubResource( 26 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="box"]
+transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
+stream = ExtResource( 10 )
+unit_db = 3.0
+
+[node name="Lidjoint1" type="HingeJoint" parent="."]
+transform = Transform( 0.0876774, 0, -0.996149, 0, 1, 0, 0.996149, 0, 0.0876774, 0.653019, 1.04447, -0.982881 )
+nodes/node_a = NodePath("../box")
+nodes/node_b = NodePath("../lid1")
+params/bias = 0.99
+angular_limit/enable = true
+angular_limit/upper = 0.0
+angular_limit/lower = 0.0
+angular_limit/bias = 0.99
+angular_limit/softness = 1.0
+
+[node name="Lidjoint2" type="HingeJoint" parent="."]
+transform = Transform( 0.0876774, 0, -0.996149, 0, 1, 0, 0.996149, 0, 0.0876774, -0.618808, 1.04447, -0.982881 )
+nodes/node_a = NodePath("../box")
+nodes/node_b = NodePath("../lid1")
+params/bias = 0.99
+angular_limit/enable = true
+angular_limit/upper = 0.0
+angular_limit/lower = 0.0
+angular_limit/bias = 0.99
+angular_limit/softness = 1.0
+
+[node name="LidJoint3" type="HingeJoint" parent="."]
+transform = Transform( -0.0061611, 0, 0.999981, 0, 1, 0, -0.999981, 0, -0.0061611, -0.693713, 1.05088, 0.927094 )
+nodes/node_a = NodePath("../box")
+nodes/node_b = NodePath("../lid2")
+params/bias = 0.99
+angular_limit/enable = true
+angular_limit/upper = 0.0
+angular_limit/lower = 0.0
+angular_limit/bias = 0.99
+angular_limit/softness = 1.0
+
+[node name="LidJoint4" type="HingeJoint" parent="."]
+transform = Transform( -0.0061611, 0, 0.999981, 0, 1, 0, -0.999981, 0, -0.0061611, 0.466294, 1.05088, 0.927094 )
+nodes/node_a = NodePath("../box")
+nodes/node_b = NodePath("../lid2")
+params/bias = 0.99
+angular_limit/enable = true
+angular_limit/upper = 0.0
+angular_limit/lower = 0.0
+angular_limit/bias = 0.99
+angular_limit/softness = 1.0
+[connection signal="area_entered" from="box/detection_area" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_exited" from="box/detection_area" to="." method="_on_detection_area_area_exited"]
+[connection signal="area_entered" from="box/eating_area" to="." method="_on_eating_area_area_entered"]
+[connection signal="area_exited" from="box/eating_area" to="." method="_on_eating_area_area_exited"]
